@@ -1,0 +1,54 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phiếu 5–8 — Memoization & AI</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="topbar"><nav class="nav">
+<a class="brand" href="index.html">🧠 KỸ THUẬT ĐỆ QUY</a>
+<div class="navlinks">
+<a class="" href="index.html">Trang chủ</a>
+<a class="" href="lesson01.html">Phiếu 1–4</a>
+<a class="active" href="lesson02.html">Phiếu 5–8</a>
+<a class="" href="lesson03.html">Phiếu 9–12</a>
+<a class="" href="submit.html">Nộp bài</a>
+<a class="" href="teacher.html">Hồ sơ</a>
+</div>
+</nav></header>
+<main class="container">
+<section class="hero"><span class="badge">PHIẾU 5–8</span><h1>⚡ Từ Call Tree đến tối ưu hóa</h1><p>Nhìn thấy trạng thái trùng lặp, hiểu Memoization và dùng AI như một đối tượng để kiểm chứng.</p></section>
+
+<div class="section-title"><h2>PHIẾU 5 · ⚡ OVERLAPPING SUBPROBLEM</h2></div>
+<section class="card question"><h3>Trong cây fib(5), trạng thái nào bị tính lại?</h3><input data-key="p5_overlap" placeholder="Ví dụ: fib(...), fib(...)"></section>
+
+<div class="section-title"><h2>PHIẾU 6 · 💾 MEMOIZATION</h2></div>
+<section class="card">
+<div class="question"><h3>Memoization giúp gì?</h3><textarea data-key="p6_help"></textarea></div>
+<div class="question"><h3>Trade-off?</h3><textarea data-key="p6_tradeoff"></textarea></div>
+</section>
+
+<div class="section-title"><h2>PHIẾU 7 · 🤖 AI CHALLENGE 1</h2></div>
+<section class="card">
+<div class="prompt" id="prompt1">Hãy giải thích Fibonacci đệ quy cho học sinh lớp 11.</div>
+<button class="btn light" onclick="copyPrompt('prompt1')">📋 Sao chép prompt</button>
+<div class="question"><h3>AI trả lời</h3><textarea data-key="ai1_answer"></textarea></div>
+<div class="grid2">
+<div class="question"><h3>Điểm đúng</h3><textarea data-key="ai1_correct"></textarea></div>
+<div class="question"><h3>Điểm thiếu</h3><textarea data-key="ai1_missing"></textarea></div>
+</div>
+<div class="question"><h3>Kết luận của em</h3><textarea data-key="ai1_conclusion"></textarea></div>
+<div class="checks">
+<label><input type="checkbox" data-key="ai1_check_sgk"> Đã đối chiếu tài liệu học tập</label>
+<label><input type="checkbox" data-key="ai1_check_reason"> Đã tự kiểm chứng</label>
+</div>
+</section>
+
+<div class="section-title"><h2>PHIẾU 8 · 🤖 AI CHALLENGE 2</h2></div>
+<section class="card">
+<div class="prompt" id="prompt2">Tại sao Fibonacci đệ quy chậm?</div>
+<button class="btn light" onclick="copyPrompt('prompt2')">📋 Sao chép prompt</button>
+<p>Phản biện AI bằng <b>Call Tree · Số lời gọi · Complexity</b>.</p>
+<textarea data-key="ai2_debate" placeholder="Không chỉ chép câu trả lời AI; hãy dùng bằng chứng thuật toán."></textarea>
+<div class="checks">
+<label><input type="checkbox" data-key="ai2_tree"> Có dùng Call Tree</label>
+<label><input type="checkbox" data-key="ai2_calls"> Có phân tích số lời gọi</label>
+<label><input type="checkbox" data-key="ai2_complexity"> Có nêu Complexity</label>
+</div>
+</section>
+<div class="actions"><a class="btn orange" href="lesson03.html">Tiếp tục →</a></div>
+</main><footer>LMS Kỹ thuật Đệ quy · GitHub Pages · Lưu bài trên thiết bị bằng localStorage</footer><script src="app.js"></script></body></html>

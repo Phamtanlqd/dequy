@@ -1,0 +1,59 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hồ sơ năng lực — LMS Đệ quy</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="topbar"><nav class="nav">
+<a class="brand" href="index.html">🧠 KỸ THUẬT ĐỆ QUY</a>
+<div class="navlinks">
+<a class="" href="index.html">Trang chủ</a>
+<a class="" href="lesson01.html">Phiếu 1–4</a>
+<a class="" href="lesson02.html">Phiếu 5–8</a>
+<a class="" href="lesson03.html">Phiếu 9–12</a>
+<a class="" href="submit.html">Nộp bài</a>
+<a class="active" href="teacher.html">Hồ sơ</a>
+</div>
+</nav></header>
+<main class="container">
+<section class="hero"><span class="badge">TEACHER</span><h1>🎓 Hồ sơ năng lực</h1><p>Trang này hiển thị dữ liệu bài làm đã lưu trên trình duyệt hiện tại. Khi triển khai nhiều máy học sinh, hãy kết nối Google Apps Script để tập trung dữ liệu.</p></section>
+
+<section class="card" style="margin-top:18px">
+<h2>Hồ sơ hiện tại</h2>
+<div class="grid">
+<div><div class="kpi" id="tName">—</div><div class="small">Học sinh</div></div>
+<div><div class="kpi" id="tScore">0</div><div class="small">Hồ sơ / 100</div></div>
+<div><div class="kpi" id="tAI">0</div><div class="small">AI evidence</div></div>
+</div>
+</section>
+
+<section class="card" style="margin-top:18px">
+<h2>📊 Bản đồ năng lực</h2>
+<table><thead><tr><th>Năng lực</th><th>Minh chứng</th><th>Trạng thái</th></tr></thead>
+<tbody>
+<tr><td>Recursive Thinking</td><td>Base Case + Recursive Case</td><td id="c1">—</td></tr>
+<tr><td>Call Tree & Complexity</td><td>Phân tích fib(5), số lời gọi</td><td id="c2">—</td></tr>
+<tr><td>Optimization</td><td>Overlapping + Memoization</td><td id="c3">—</td></tr>
+<tr><td>AI Literacy</td><td>Hỏi AI → kiểm chứng → phản biện</td><td id="c4">—</td></tr>
+<tr><td>Problem Solving</td><td>Observation → Proof → Complexity</td><td id="c5">—</td></tr>
+<tr><td>Backtracking</td><td>N-Queens: hợp lệ → ứng cử viên → quay lui</td><td id="c6">—</td></tr>
+</tbody></table>
+</section>
+
+<section class="card" style="margin-top:18px">
+<h2>🔧 Dữ liệu / đồng bộ</h2>
+<p class="small">Nếu dùng Google Apps Script, có thể xây dựng endpoint nhận JSON và ghi vào Google Sheets. Front-end đã có sẵn chỗ cấu hình API_ENDPOINT trong submit.html.</p>
+<button class="btn danger" onclick="clearAll()">Xóa dữ liệu cục bộ</button>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  bindAutosave();
+  const p=profile();
+  document.getElementById('tName').textContent=state.student.name||'—';
+  document.getElementById('tScore').textContent=p.score;
+  document.getElementById('tAI').textContent=p.ai;
+  const has=k=>!!String(state.answers[k]||'').trim();
+  document.getElementById('c1').textContent=(has('p2_factorial_base')&&has('p3_factorial_rec'))?'Đạt':'Chưa đủ';
+  document.getElementById('c2').textContent=(has('p4_total')&&has('p4_fib2')&&has('p4_fib1'))?'Đạt':'Chưa đủ';
+  document.getElementById('c3').textContent=(has('p5_overlap')&&has('p6_help'))?'Đạt':'Chưa đủ';
+  document.getElementById('c4').textContent=(has('ai1_conclusion')&&has('ai2_debate'))?'Đạt':'Chưa đủ';
+  document.getElementById('c5').textContent=(has('p11_observation')&&has('p11_proof')&&has('p11_complexity'))?'Đạt':'Chưa đủ';
+  document.getElementById('c6').textContent=(has('p10_valid')&&has('p10_backtrack'))?'Đạt':'Chưa đủ';
+});
+</script>
+</main><footer>LMS Kỹ thuật Đệ quy · GitHub Pages · Lưu bài trên thiết bị bằng localStorage</footer><script src="app.js"></script></body></html>

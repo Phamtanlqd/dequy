@@ -1,0 +1,71 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nộp bài — LMS Đệ quy</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="topbar"><nav class="nav">
+<a class="brand" href="index.html">🧠 KỸ THUẬT ĐỆ QUY</a>
+<div class="navlinks">
+<a class="" href="index.html">Trang chủ</a>
+<a class="" href="lesson01.html">Phiếu 1–4</a>
+<a class="" href="lesson02.html">Phiếu 5–8</a>
+<a class="" href="lesson03.html">Phiếu 9–12</a>
+<a class="active" href="submit.html">Nộp bài</a>
+<a class="" href="teacher.html">Hồ sơ</a>
+</div>
+</nav></header>
+<main class="container">
+<section class="hero"><span class="badge">SUBMIT</span><h1>📤 Kiểm tra & Nộp bài</h1><p>Hệ thống tạo một bản ghi bài làm từ dữ liệu đã lưu trên trình duyệt. Nếu chưa cấu hình máy chủ, bài vẫn được lưu cục bộ để học sinh không mất dữ liệu.</p></section>
+
+<section class="card">
+<h2>Thông tin học sinh</h2>
+<div class="grid2">
+<div><label>Họ và tên</label><input id="studentName"></div>
+<div><label>Lớp</label><input id="studentClass"></div>
+<div><label>Nhóm</label><input id="studentGroup"></div>
+<div><label>Trạng thái</label><p id="status">Chưa nộp</p></div>
+</div>
+</section>
+
+<section class="card" style="margin-top:18px">
+<h2>Tiến độ</h2><div class="progress"><span></span></div><p><b data-progress-text>0%</b> dữ liệu trên trang hiện tại. Các phiếu đã điền được giữ trong localStorage.</p>
+<div class="actions">
+<button class="btn success" onclick="submitWork()">💾 Lưu & ghi nhận nộp bài</button>
+<button class="btn light" onclick="downloadJSON()">⬇ Xuất bài làm JSON</button>
+</div>
+<p class="small">Để đồng bộ về giáo viên, mở file <b>teacher.html</b> và cấu hình URL Google Apps Script trong biến API_ENDPOINT.</p>
+</section>
+
+<section class="card" style="margin-top:18px">
+<h2>🏆 Hồ sơ năng lực tạm tính</h2>
+<div class="grid">
+<div><div class="kpi" id="kpiAnswered">0</div><div class="small">trường đã trả lời</div></div>
+<div><div class="kpi" id="kpiAI">0</div><div class="small">trường AI Challenge</div></div>
+<div><div class="kpi" id="kpiScore">0</div><div class="small">điểm hồ sơ / 100</div></div>
+</div>
+</section>
+
+<script>
+const API_ENDPOINT = ''; // Dán URL Google Apps Script Web App nếu muốn đồng bộ tập trung.
+function refreshSubmit(){
+  bindAutosave();
+  const p=profile();
+  document.getElementById('kpiAnswered').textContent=p.answered;
+  document.getElementById('kpiAI').textContent=p.ai;
+  document.getElementById('kpiScore').textContent=p.score;
+  document.getElementById('status').textContent=state.submitted?'Đã nộp '+(state.submittedAt||''):'Chưa nộp';
+}
+function submitWork(){
+  if(!state.student.name.trim()){alert('Hãy nhập họ và tên trước khi nộp.');return;}
+  state.submitted=true; state.submittedAt=new Date().toLocaleString('vi-VN'); saveState();
+  const payload={student:state.student,answers:state.answers,checks:state.checks,submittedAt:state.submittedAt,score:profile().score};
+  if(API_ENDPOINT){
+    fetch(API_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+      .then(()=>alert('Đã ghi nhận bài và gửi dữ liệu về máy chủ.')).catch(()=>alert('Đã lưu cục bộ. Máy chủ chưa nhận được dữ liệu.'));
+  }else alert('Đã lưu và ghi nhận nộp bài trên thiết bị này.');
+  refreshSubmit();
+}
+function downloadJSON(){
+  const payload={student:state.student,answers:state.answers,checks:state.checks,submittedAt:state.submittedAt,score:profile().score};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='bai-lam-de-quy.json';a.click();URL.revokeObjectURL(a.href);
+}
+document.addEventListener('DOMContentLoaded',refreshSubmit);
+</script>
+</main><footer>LMS Kỹ thuật Đệ quy · GitHub Pages · Lưu bài trên thiết bị bằng localStorage</footer><script src="app.js"></script></body></html>
